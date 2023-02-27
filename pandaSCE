@@ -1,0 +1,41 @@
+Example of statistics in R commander while analyzing Single Case Experiment data with an ABA design (instead of DatasetRANDASSSIGN, use your own file's name). 
+Make sure to have R commander to be able to analyze this kind of data: 
+
+#libraries you will need for single case randomized studies# use the typical R FUNCTION to install the packages first## 
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+####
+
+# Observed statistics#
+``` Rcmdr>  observed(design = "ABA", statistic = "A-B", data = DatasetRANDASSIGN)```
+# p value#
+``` Rcmdr>  pvalue.systematic(design = "ABA", statistic = "A-B", limit = 3, data = Rcmdr+  DatasetRANDASSIGN)```
+# Effect size#
+``` Rcmdr>  ES(design = "ABA", ES = "SMD", data = DatasetRANDASSIGN)
+```
+# graphic plot#
+```{r}graph(design = "ABA", data = DatasetRANDASSIGN)```
+
+
+#analysis of single case experiment# change only the dataset name and the file path that appears here and replace with yours on your terminal###
+```{r}Datasettwnty <- readXL("D:/RM second year/Practicals/SINGLE CASE EXPR/01A.DATAuseonlyforanalysis/DatasetSC.xlsx",
+rownames=FALSE, header=TRUE, na="", sheet="Blad1", stringsAsFactors=TRUE)```
+
+##To create a randomization schedule (randomize the treatment to your patient/participant)## Notice in this case my example has 18 and 3 as MT and L, but you shall add
+your own numbers on the basis of the theory that holds your method and of what do you want to assess or experiment with##
+
+Randomization schedule 
+
+Study design: ABA withdrawal design
+SCRT package (Bulté & Onghena, 2013).
+Measurement Times (MT) =18
+Limit =3
+
+#R script starts#
+quantity(design = "ABA", MT = 18, limit = 3)
+assignments(design = "ABA", MT = 18, limit = 3, save = "no")
+selectdesign(design = "ABA", MT = 18, limit = 3)
+Rcmdr>  selectdesign(design = "ABA", MT = 18, limit = 3)
+#R script ends#
+##############################################################CONTRIBUTION FOR SINGLE CASE EXPERIMENTS DESIGN ENDS HERE FOR NOW########################################################
